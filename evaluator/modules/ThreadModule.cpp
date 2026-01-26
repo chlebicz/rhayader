@@ -2,6 +2,7 @@
 #include "../Thread.hpp"
 #include "../evaluator.hpp"
 #include <sstream>
+#include "Validation.hpp"
 
 namespace rhayader {
 	ThreadModule::ThreadModule(Evaluator& evaluator) : ModuleValue{evaluator, "Thread"} {
@@ -10,6 +11,9 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ThreadModule::newthread(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Thread.new", args.size(), 1);
+        validateArgumentType("Thread.new", 0, args[0], ValueType::FunctionValue);
+
 		auto func = valueCast<FunctionValue>(args[0]);
 		auto& thread = evaluator.thread.childThreads.emplace_back(func);
 
@@ -20,6 +24,9 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ThreadModule::sleep(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Thread.sleep", args.size(), 1);
+        validateArgumentType("Thread.sleep", 0, args[0], ValueType::NumberValue);
+
 		auto interval = valueCast<NumberValue>(args[0]);
 		std::this_thread::sleep_for(std::chrono::milliseconds((int)interval->value));
 		return std::make_shared<UndefinedValue>();
