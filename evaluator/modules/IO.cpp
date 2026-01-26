@@ -1,5 +1,6 @@
 #include "IO.hpp"
 #include <iostream>
+#include "Validation.hpp"
 
 namespace rhayader {
     IOModule::IOModule(Evaluator& evaluator) : ModuleValue{evaluator, "IO"} {
@@ -10,6 +11,7 @@ namespace rhayader {
     }
 
     std::shared_ptr<Value> IOModule::print(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
+        // print accepts any number of arguments of any type.
         for (const auto& arg : args)
             std::cout << arg->dump() << " ";
         std::cout << "\n";
@@ -17,6 +19,7 @@ namespace rhayader {
     }
 
     std::shared_ptr<Value> IOModule::input(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("IO.input", args.size(), 0);
         std::string result;
         std::getline(std::cin, result);
         return std::make_shared<StringValue>(result);

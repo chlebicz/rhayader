@@ -1,5 +1,6 @@
 #include "Array.hpp"
 #include "../EvaluateError.hpp"
+#include "Validation.hpp"
 #include <algorithm>
 
 namespace rhayader {
@@ -31,6 +32,10 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::at(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.at", args.size(), 2);
+        validateArgumentType("Array.at", 0, args[0], ValueType::ArrayValue);
+        validateArgumentType("Array.at", 1, args[1], ValueType::NumberValue);
+
 		auto arr = valueCast<ArrayValue>(args[0]);
 		auto indexArg = valueCast<NumberValue>(args[1]);
 		if (!indexArg->isInt())
@@ -49,6 +54,10 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::remove_at(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.remove_at", args.size(), 2);
+        validateArgumentType("Array.remove_at", 0, args[0], ValueType::ArrayValue);
+        validateArgumentType("Array.remove_at", 1, args[1], ValueType::NumberValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]->clone());
 		auto indexArg = valueCast<NumberValue>(args[1]);
 		if (!indexArg->isInt())
@@ -58,12 +67,19 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::remove(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.remove", args.size(), 2);
+        validateArgumentType("Array.remove", 0, args[0], ValueType::ArrayValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]->clone());
 		arr->remove(args[1]);
 		return arr;
 	}
 
 	std::shared_ptr<Value> ArrayModule::map(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.map", args.size(), 2);
+        validateArgumentType("Array.map", 0, args[0], ValueType::ArrayValue);
+        validateArgumentType("Array.map", 1, args[1], ValueType::FunctionValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]);
 		const auto callback = valueCast<FunctionValue>(args[1]);
 
@@ -80,6 +96,10 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::for_each(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.for_each", args.size(), 2);
+        validateArgumentType("Array.for_each", 0, args[0], ValueType::ArrayValue);
+        validateArgumentType("Array.for_each", 1, args[1], ValueType::FunctionValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]);
 		const auto callback = valueCast<FunctionValue>(args[1]);
 
@@ -95,12 +115,19 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::add(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.add", args.size(), 2);
+        validateArgumentType("Array.add", 0, args[0], ValueType::ArrayValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]->clone());
 		arr->add(args[1]);
 		return arr;
 	}
 
 	std::shared_ptr<Value> ArrayModule::filter(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.filter", args.size(), 2);
+        validateArgumentType("Array.filter", 0, args[0], ValueType::ArrayValue);
+        validateArgumentType("Array.filter", 1, args[1], ValueType::FunctionValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]->clone());
 		const auto callback = valueCast<FunctionValue>(args[1]);
 
@@ -123,6 +150,9 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::contains(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.contains", args.size(), 2);
+        validateArgumentType("Array.contains", 0, args[0], ValueType::ArrayValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]);
 
 		for (const auto& element : arr->getData()) {
@@ -134,6 +164,12 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::slice(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.slice", args.size(), 2, 3);
+        validateArgumentType("Array.slice", 0, args[0], ValueType::ArrayValue);
+        validateArgumentType("Array.slice", 1, args[1], ValueType::NumberValue);
+        if (args.size() >= 3)
+            validateArgumentType("Array.slice", 2, args[2], ValueType::NumberValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]);
 		const auto start = valueCast<NumberValue>(args[1])->value;
 		const auto end = args.size() >= 3
@@ -148,11 +184,18 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::length(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.length", args.size(), 1);
+        validateArgumentType("Array.length", 0, args[0], ValueType::ArrayValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]);
 		return std::make_shared<NumberValue>((float) arr->size());
 	}
 
 	std::shared_ptr<Value> ArrayModule::find(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.find", args.size(), 2);
+        validateArgumentType("Array.find", 0, args[0], ValueType::ArrayValue);
+        validateArgumentType("Array.find", 1, args[1], ValueType::FunctionValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]);
 		const auto callback = valueCast<FunctionValue>(args[1]);
 
@@ -176,6 +219,10 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::find_index(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.find_index", args.size(), 2);
+        validateArgumentType("Array.find_index", 0, args[0], ValueType::ArrayValue);
+        validateArgumentType("Array.find_index", 1, args[1], ValueType::FunctionValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]);
 		const auto callback = valueCast<FunctionValue>(args[1]);
 
@@ -199,6 +246,9 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::index_of(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.index_of", args.size(), 2);
+        validateArgumentType("Array.index_of", 0, args[0], ValueType::ArrayValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]);
 
 		for (size_t i = 0; i < arr->size(); ++i) {
@@ -211,6 +261,9 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::concat(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.concat", args.size(), 1);
+        validateArgumentType("Array.concat", 0, args[0], ValueType::ArrayValue);
+
 		const auto arrays = valueCast<ArrayValue>(args[0]);
 
 		const auto result = std::make_shared<ArrayValue>();
@@ -228,6 +281,10 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::some(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.some", args.size(), 2);
+        validateArgumentType("Array.some", 0, args[0], ValueType::ArrayValue);
+        validateArgumentType("Array.some", 1, args[1], ValueType::FunctionValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]);
 		const auto callback = valueCast<FunctionValue>(args[1]);
 
@@ -249,6 +306,10 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::sort(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.sort", args.size(), 2);
+        validateArgumentType("Array.sort", 0, args[0], ValueType::ArrayValue);
+        validateArgumentType("Array.sort", 1, args[1], ValueType::FunctionValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]->clone());
 		const auto compare = valueCast<FunctionValue>(args[1]);
 		std::sort(
@@ -263,17 +324,25 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::flat(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.flat", args.size(), 1);
+        validateArgumentType("Array.flat", 0, args[0], ValueType::ArrayValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]->clone());
 		return _flat(arr);
 	}
 
 	std::shared_ptr<Value> ArrayModule::is_array(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.is_array", args.size(), 1);
 		return std::make_shared<BooleanValue>(
 			args[0]->type == ValueType::ArrayValue
 		);
 	}
 
 	std::shared_ptr<Value> ArrayModule::reduce(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.reduce", args.size(), 3);
+        validateArgumentType("Array.reduce", 0, args[0], ValueType::ArrayValue);
+        validateArgumentType("Array.reduce", 1, args[1], ValueType::FunctionValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]);
 		const auto callback = valueCast<FunctionValue>(args[1]);
 		const auto defaultValue = args[2];
@@ -288,12 +357,19 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::reverse(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.reverse", args.size(), 1);
+        validateArgumentType("Array.reverse", 0, args[0], ValueType::ArrayValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]->clone());
 		arr->reverse();
 		return arr;
 	}
 
 	std::shared_ptr<Value> ArrayModule::reduce_right(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.reduce_right", args.size(), 3);
+        validateArgumentType("Array.reduce_right", 0, args[0], ValueType::ArrayValue);
+        validateArgumentType("Array.reduce_right", 1, args[1], ValueType::FunctionValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]);
 		const auto callback = valueCast<FunctionValue>(args[1]);
 		const auto defaultValue = args[2];
@@ -308,6 +384,10 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::join(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.join", args.size(), 2);
+        validateArgumentType("Array.join", 0, args[0], ValueType::ArrayValue);
+        validateArgumentType("Array.join", 1, args[1], ValueType::StringValue);
+
 		const auto arr = valueCast<ArrayValue>(args[0]);
 		const auto& separator = valueCast<StringValue>(args[1])->value;
 
@@ -324,6 +404,8 @@ namespace rhayader {
 	}
 
 	std::shared_ptr<Value> ArrayModule::range(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
+        validateArgumentCount("Array.range", args.size(), 1, 2);
+        // Using existing manual checks here because they check type inside blocks
 		if (args.size() == 1) {
 			if (args[0]->type != ValueType::NumberValue)
 				throw EvaluateError("range accepts only number values");
@@ -336,6 +418,7 @@ namespace rhayader {
 			auto to = (size_t) valueCast<NumberValue>(args[1])->value;
 			return std::make_shared<RangeValue>(from, to);
 		} else {
+            // Should be unreachable due to validateArgumentCount
 			throw EvaluateError("range accepts 1-2 arguments");
 		}
 	}
