@@ -381,8 +381,9 @@ namespace rhayader {
 
 	std::shared_ptr<Value> Evaluator::setVariable(const std::string& name, std::shared_ptr<Value> value) {
 		for (auto& scope : currentContext) {
-			if (scope->variables.contains(name))
-				return scope->variables[name] = value;
+			auto it = scope->variables.find(name);
+			if (it != scope->variables.end())
+				return it->second = value;
 		}
 
 		currentContext[currentContext.size() - 1]->variables[name] = value;
