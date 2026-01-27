@@ -5,6 +5,7 @@
 #include "modules/String.hpp"
 #include "modules/Math.hpp"
 #include "modules/ThreadModule.hpp"
+#include "modules/File.hpp"
 
 namespace rhayader {
 	GlobalScope::GlobalScope(Evaluator& evaluator) {
@@ -14,5 +15,6 @@ namespace rhayader {
 		variables["String"] = std::make_shared<StringModule>(evaluator);
 		variables["Math"] = std::make_shared<MathModule>(evaluator);
 		variables["Thread"] = std::make_shared<ThreadModule>(evaluator);
+		variables["File"] = std::make_shared<FileModule>(evaluator);
 	}
 }

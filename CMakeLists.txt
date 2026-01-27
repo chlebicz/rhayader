@@ -36,8 +36,8 @@ set(
 
 set(
   modules
-  evaluator/modules/Array.cpp evaluator/modules/IO.cpp evaluator/modules/Map.cpp evaluator/modules/Math.cpp evaluator/modules/String.cpp evaluator/modules/ThreadModule.cpp evaluator/modules/Validation.cpp
-  evaluator/modules/Array.hpp evaluator/modules/IO.hpp evaluator/modules/Map.hpp evaluator/modules/Math.hpp evaluator/modules/String.hpp evaluator/modules/ThreadModule.hpp evaluator/modules/Validation.hpp
+  evaluator/modules/Array.cpp evaluator/modules/IO.cpp evaluator/modules/Map.cpp evaluator/modules/Math.cpp evaluator/modules/String.cpp evaluator/modules/ThreadModule.cpp evaluator/modules/Validation.cpp evaluator/modules/File.cpp
+  evaluator/modules/Array.hpp evaluator/modules/IO.hpp evaluator/modules/Map.hpp evaluator/modules/Math.hpp evaluator/modules/String.hpp evaluator/modules/ThreadModule.hpp evaluator/modules/Validation.hpp evaluator/modules/File.hpp
 )
 
 set(
