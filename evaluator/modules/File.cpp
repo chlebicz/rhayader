@@ -17,8 +17,8 @@ namespace rhayader {
         variables["exists"] = std::make_shared<FunctionValue>(&exists);
         variables["delete"] = std::make_shared<FunctionValue>(&removeFile);
         variables["mkdir"] = std::make_shared<FunctionValue>(&mkdir);
-        variables["isDirectory"] = std::make_shared<FunctionValue>(&isDirectory);
-        variables["readDir"] = std::make_shared<FunctionValue>(&readDir);
+        variables["is_directory"] = std::make_shared<FunctionValue>(&isDirectory);
+        variables["read_dir"] = std::make_shared<FunctionValue>(&readDir);
         variables["join"] = std::make_shared<FunctionValue>(&join);
     }
 
@@ -115,8 +115,8 @@ namespace rhayader {
     }
 
     std::shared_ptr<Value> FileModule::isDirectory(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
-        validateArgumentCount("File.isDirectory", args.size(), 1);
-        validateArgumentType("File.isDirectory", 0, args[0], ValueType::StringValue);
+        validateArgumentCount("File.is_directory", args.size(), 1);
+        validateArgumentType("File.is_directory", 0, args[0], ValueType::StringValue);
 
         std::string path = getString(args[0]);
         try {
@@ -127,8 +127,8 @@ namespace rhayader {
     }
 
     std::shared_ptr<Value> FileModule::readDir(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
-        validateArgumentCount("File.readDir", args.size(), 1);
-        validateArgumentType("File.readDir", 0, args[0], ValueType::StringValue);
+        validateArgumentCount("File.read_dir", args.size(), 1);
+        validateArgumentType("File.read_dir", 0, args[0], ValueType::StringValue);
 
         std::string path = getString(args[0]);
         auto map = std::make_shared<MapValue>();
