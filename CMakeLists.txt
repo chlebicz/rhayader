@@ -84,5 +84,8 @@ add_executable(
 
 target_link_libraries(rhayader_tests PRIVATE Catch2::Catch2WithMain)
 
-enable_testing()
-add_test(NAME RhayaderTests COMMAND rhayader_tests)
+# Test Registration
+list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
+include(CTest)
+include(Catch)
+catch_discover_tests(rhayader_tests)

@@ -1,0 +1,6 @@
+Adds two numbers 1 0.0104088
+Function definition and call 1 0.00684829
+Math module usage 1 0.006276
+String module usage 1 0.00642654
+Array module usage 1 0.00594161
+---
