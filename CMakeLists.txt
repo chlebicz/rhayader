@@ -59,3 +59,13 @@ add_executable(
   rhayader
   ${main} ${util} ${tokenizer} ${parser} ${evaluator} ${modules} ${values}
 )
+
+add_executable(
+  tests
+  test/test.cpp FileReader.cpp ${util} ${tokenizer} ${parser} ${evaluator} ${modules} ${values}
+)
+
+add_executable(
+  benchmark
+  benchmark.cpp FileReader.cpp ${util} ${tokenizer} ${parser} ${evaluator} ${modules} ${values}
+)

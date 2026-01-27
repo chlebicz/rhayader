@@ -1,5 +1,5 @@
-#ifdef RUN_TESTS
-#include <catch.hpp>
+#include <iostream>
+#include <cassert>
 
 #include "../tokenizer/Tokenizer.hpp"
 #include "../parser/Parser.hpp"
@@ -7,16 +7,22 @@
 #include "../evaluator/valueCast.hpp"
 #include "../evaluator/Thread.hpp"
 
-TEST_CASE("Adds two numbers") {
-    soviet::Tokenizer tokenizer;
+void test_adds_two_numbers() {
+    std::cout << "Running test: Adds two numbers" << std::endl;
+    rhayader::Tokenizer tokenizer;
     tokenizer.tokenize("2 + 2");
 
-    soviet::Parser parser{ tokenizer.getTokens() };
+    rhayader::Parser parser{ tokenizer.getTokens() };
     const auto tree = parser.parse();
 
-    soviet::Thread t;
+    rhayader::Thread t;
     const auto value = t.evaluator->evaluate(tree);
 
-    REQUIRE(valueCast<soviet::NumberValue>(value)->value == 4);
+    assert(rhayader::valueCast<rhayader::NumberValue>(value)->value == 4);
+    std::cout << "Test passed!" << std::endl;
 }
-#endif
+
+int main() {
+    test_adds_two_numbers();
+    return 0;
+}
