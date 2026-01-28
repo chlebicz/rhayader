@@ -18,3 +18,10 @@ rhayader.dir/
 .idea/
 
 rhayader
+rhayader_tests
+_deps/
+Testing/
+CTestTestfile.cmake
+DartConfiguration.tcl
+*.cmake
+!CMakeLists.txt
