@@ -52,10 +52,10 @@ namespace rhayader {
 
         const auto& str = valueCast<StringValue>(args[0])->value;
         auto indexVal = valueCast<NumberValue>(args[1])->value;
-        if (indexVal < 0) return std::make_shared<UndefinedValue>();
+        if (indexVal < 0) return std::make_shared<NullValue>();
 
         const auto index = static_cast<size_t>(indexVal);
-        if (index >= str.length()) return std::make_shared<UndefinedValue>();
+        if (index >= str.length()) return std::make_shared<NullValue>();
 
         const auto result = std::string(1, str[index]);
         return std::make_shared<StringValue>(result);

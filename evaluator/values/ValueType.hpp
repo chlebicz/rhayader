@@ -6,7 +6,6 @@ namespace rhayader {
         NumberValue,
         BooleanValue,
         StringValue,
-        UndefinedValue,
         FunctionValue,
         ExplicitReturnValue,
         ArrayValue,

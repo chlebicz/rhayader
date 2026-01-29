@@ -6,7 +6,7 @@
 #include "../values/BooleanValue.hpp"
 #include "../values/MapValue.hpp"
 #include "../values/ArrayValue.hpp"
-#include "../values/UndefinedValue.hpp"
+#include "../values/NullValue.hpp"
 #include "../valueCast.hpp"
 
 namespace rhayader {

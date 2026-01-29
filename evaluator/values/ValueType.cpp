@@ -9,7 +9,6 @@ namespace rhayader {
 			case ValueType::FunctionValue: return "function";
 			case ValueType::NumberValue: return "number";
 			case ValueType::StringValue: return "string";
-			case ValueType::UndefinedValue: return "undefined";
 			case ValueType::MapValue: return "map";
 			case ValueType::RangeValue: return "range";
 			case ValueType::NullValue: return "null";

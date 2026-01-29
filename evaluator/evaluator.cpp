@@ -167,7 +167,7 @@ namespace rhayader {
 				currentContext[0]->variables[name] = value;
 		}
 
-		return std::make_shared<UndefinedValue>();
+		return std::make_shared<NullValue>();
 	}
 
 	std::shared_ptr<Value> Evaluator::evaluateLessThanOpNode(const std::shared_ptr<Node>& n) {
@@ -316,7 +316,7 @@ namespace rhayader {
 		else if (n->elseBody)
 			return evaluate(n->elseBody);
 
-		return std::make_shared<UndefinedValue>();
+		return std::make_shared<NullValue>();
 	}
 
 	std::shared_ptr<Value> Evaluator::evaluateWhileLoopNode(const std::shared_ptr<Node>& node) {
@@ -332,7 +332,7 @@ namespace rhayader {
 			evaluate(n->body);
 		}
 
-		return std::make_shared<UndefinedValue>();
+		return std::make_shared<NullValue>();
 	}
 
 	std::shared_ptr<Value> Evaluator::evaluateSubOpNode(const std::shared_ptr<Node>& n) {
@@ -521,7 +521,7 @@ namespace rhayader {
 		}
 		currentContext.pop_back();
 
-		return std::make_shared<UndefinedValue>();
+		return std::make_shared<NullValue>();
 	}
 
 	std::shared_ptr<Value> Evaluator::evaluateBooleanNode(const std::shared_ptr<Node>& node) {

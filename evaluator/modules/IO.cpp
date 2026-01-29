@@ -15,7 +15,7 @@ namespace rhayader {
         for (const auto& arg : args)
             std::cout << arg->dump() << " ";
         std::cout << "\n";
-        return std::make_shared<UndefinedValue>();
+        return std::make_shared<NullValue>();
     }
 
     std::shared_ptr<Value> IOModule::input(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
