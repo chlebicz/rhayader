@@ -1,15 +1,25 @@
 #include "repl.hpp"
+#include <replxx.hxx>
 
 static rhayader::Thread mainThread;
+static replxx::Replxx rx;
 
 std::string previousLine;
 rhayader::Tokenizer tokenizer;
 
 void getline() {
-	std::cout << ">>> ";
+	std::string prompt = previousLine.empty() ? ">>> " : "... ";
+	const char* input = rx.input(prompt);
 
-	std::string line;
-	std::getline(std::cin, line);
+	if (input == nullptr) {
+		exit(0);
+	}
+
+	std::string line = input;
+	if (!line.empty()) {
+		rx.history_add(line);
+	}
+
 	line = previousLine + line;
 
 	try {

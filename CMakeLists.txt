@@ -3,6 +3,14 @@ project(rhayader)
 
 set(CMAKE_CXX_STANDARD 20)
 
+include(FetchContent)
+FetchContent_Declare(
+  replxx
+  GIT_REPOSITORY https://github.com/AmokHuginnsson/replxx.git
+  GIT_TAG master
+)
+FetchContent_MakeAvailable(replxx)
+
 set(
   main
   main.cpp repl.cpp FileReader.cpp
@@ -59,3 +67,5 @@ add_executable(
   rhayader
   ${main} ${util} ${tokenizer} ${parser} ${evaluator} ${modules} ${values}
 )
+
+target_link_libraries(rhayader PRIVATE replxx)
