@@ -1,6 +1,6 @@
 #include "MapValue.hpp"
 #include "../valueCast.hpp"
-#include "UndefinedValue.hpp"
+#include "NullValue.hpp"
 #include "StringValue.hpp"
 
 namespace rhayader {
@@ -14,7 +14,7 @@ namespace rhayader {
 	std::shared_ptr<Value> MapValue::get(const std::string& key) {
 		const auto iterator = data.find(key);
 		if (iterator == data.end())
-			return std::make_shared<UndefinedValue>();
+			return std::make_shared<NullValue>();
 		return iterator->second;
 	}
 

@@ -1,6 +1,6 @@
 #include "ModuleValue.hpp"
 #include "../valueCast.hpp"
-#include "UndefinedValue.hpp"
+#include "NullValue.hpp"
 
 namespace rhayader {
 	ModuleValue::ModuleValue(Evaluator& evaluator)
@@ -30,7 +30,7 @@ namespace rhayader {
 	std::shared_ptr<Value> ModuleValue::get(const std::string& prop) {
 		auto result = variables.find(prop);
 		if (result == variables.end())
-			return std::make_shared<UndefinedValue>();
+			return std::make_shared<NullValue>();
 		return result->second;
 	}
 }

@@ -57,8 +57,8 @@ set(
 
 set(
   values
-  evaluator/values/ArrayValue.cpp evaluator/values/BooleanValue.cpp evaluator/values/ExplicitReturnValue.cpp evaluator/values/FunctionValue.cpp evaluator/values/MapValue.cpp evaluator/values/ModuleValue.cpp evaluator/values/NullValue.cpp evaluator/values/NumberValue.cpp evaluator/values/RangeValue.cpp evaluator/values/StringValue.cpp evaluator/values/UndefinedValue.cpp evaluator/values/ValueType.cpp
-  evaluator/values/ArrayValue.hpp evaluator/values/BooleanValue.hpp evaluator/values/ExplicitReturnValue.hpp evaluator/values/FunctionValue.hpp evaluator/values/MapValue.hpp evaluator/values/ModuleValue.hpp evaluator/values/NullValue.hpp evaluator/values/NumberValue.hpp evaluator/values/RangeValue.hpp evaluator/values/StringValue.hpp evaluator/values/UndefinedValue.hpp evaluator/values/ValueType.hpp
+  evaluator/values/ArrayValue.cpp evaluator/values/BooleanValue.cpp evaluator/values/ExplicitReturnValue.cpp evaluator/values/FunctionValue.cpp evaluator/values/MapValue.cpp evaluator/values/ModuleValue.cpp evaluator/values/NullValue.cpp evaluator/values/NumberValue.cpp evaluator/values/RangeValue.cpp evaluator/values/StringValue.cpp evaluator/values/ValueType.cpp
+  evaluator/values/ArrayValue.hpp evaluator/values/BooleanValue.hpp evaluator/values/ExplicitReturnValue.hpp evaluator/values/FunctionValue.hpp evaluator/values/MapValue.hpp evaluator/values/ModuleValue.hpp evaluator/values/NullValue.hpp evaluator/values/NumberValue.hpp evaluator/values/RangeValue.hpp evaluator/values/StringValue.hpp evaluator/values/ValueType.hpp
   evaluator/valueCast.hpp evaluator/values/Value.hpp evaluator/values/values.hpp
 )
 

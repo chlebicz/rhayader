@@ -56,7 +56,7 @@ namespace rhayader {
         validateArgumentType("Math.max", 0, args[0], ValueType::ArrayValue);
         const auto values = valueCast<ArrayValue>(args[0]);
         if (values->size() == 0) {
-            return std::make_shared<UndefinedValue>();
+            return std::make_shared<NullValue>();
         }
 
         auto first = values->at(0);

@@ -111,7 +111,7 @@ namespace rhayader {
 			callback->run(evaluator, args);
 		}
 
-		return std::make_shared<UndefinedValue>();
+		return std::make_shared<NullValue>();
 	}
 
 	std::shared_ptr<Value> ArrayModule::add(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
@@ -215,7 +215,7 @@ namespace rhayader {
 				return element;
 		}
 
-		return std::make_shared<UndefinedValue>();
+		return std::make_shared<NullValue>();
 	}
 
 	std::shared_ptr<Value> ArrayModule::find_index(Evaluator& evaluator, std::vector<std::shared_ptr<Value>>& args) {
@@ -242,7 +242,7 @@ namespace rhayader {
 				return std::make_shared<NumberValue>((float) i);
 		}
 
-		return std::make_shared<UndefinedValue>();
+		return std::make_shared<NullValue>();
 	}
 
 	std::shared_ptr<Value> ArrayModule::index_of(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {
@@ -257,7 +257,7 @@ namespace rhayader {
 				return std::make_shared<NumberValue>((float) i);
 		}
 
-		return std::make_shared<UndefinedValue>();
+		return std::make_shared<NullValue>();
 	}
 
 	std::shared_ptr<Value> ArrayModule::concat(Evaluator&, std::vector<std::shared_ptr<Value>>& args) {

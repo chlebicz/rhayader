@@ -29,6 +29,6 @@ namespace rhayader {
 
 		auto interval = valueCast<NumberValue>(args[0]);
 		std::this_thread::sleep_for(std::chrono::milliseconds((int)interval->value));
-		return std::make_shared<UndefinedValue>();
+		return std::make_shared<NullValue>();
 	}
 }
