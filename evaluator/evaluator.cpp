@@ -609,6 +609,7 @@ namespace rhayader {
 			throw EvaluateError{"module declarations can only be declared in global scope"};
 
 		std::unordered_map<std::string, std::shared_ptr<Value>> variables;
+		variables.reserve(moduleNode->members.size());
 		for (const auto& [name, value] : moduleNode->members)
 			variables.emplace(name, evaluate(value));
 
