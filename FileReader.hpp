@@ -10,7 +10,7 @@ namespace rhayader {
 
 class FileReader {
 public:
-	FileReader(std::string fileName, rhayader::Evaluator& evaluator);
+	FileReader(const std::string& fileName, rhayader::Evaluator& evaluator);
 	void execute();
 	bool ok();
 

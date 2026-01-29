@@ -1,7 +1,7 @@
 #include "FileReader.hpp"
 #include "evaluator/evaluator.hpp"
 
-FileReader::FileReader(std::string fileName, rhayader::Evaluator& evaluator)
+FileReader::FileReader(const std::string& fileName, rhayader::Evaluator& evaluator)
 	: evaluator(evaluator), file{fileName}
 {}
 
