@@ -17,6 +17,12 @@ set(
   filereader
   FileReader.cpp FileReader.hpp
 )
+FetchContent_Declare(
+  replxx
+  GIT_REPOSITORY https://github.com/AmokHuginnsson/replxx.git
+  GIT_TAG master
+)
+FetchContent_MakeAvailable(replxx)
 
 set(
   main
@@ -89,3 +95,4 @@ list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
 include(CTest)
 include(Catch)
 catch_discover_tests(rhayader_tests)
+target_link_libraries(rhayader PRIVATE replxx)
