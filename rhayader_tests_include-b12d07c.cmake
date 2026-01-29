@@ -1,0 +1,5 @@
+if(EXISTS "/app/rhayader_tests_tests-b12d07c.cmake")
+  include("/app/rhayader_tests_tests-b12d07c.cmake")
+else()
+  add_test(rhayader_tests_NOT_BUILT-b12d07c rhayader_tests_NOT_BUILT-b12d07c)
+endif()

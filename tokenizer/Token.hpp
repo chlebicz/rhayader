@@ -8,7 +8,7 @@ namespace rhayader {
         std::string value;
         unsigned int line;
         
-        Token(TokenType type, std::string value, unsigned int line);
+        Token(TokenType type, std::string&& value, unsigned int line);
         Token(const Token& other) = default;
         Token(Token&& other) noexcept;
 

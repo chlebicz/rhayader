@@ -8,7 +8,7 @@ namespace rhayader {
 		  line(std::exchange(other.line, 0))
 	{}
 
-	Token::Token(TokenType type, std::string value, unsigned int line)
+	Token::Token(TokenType type, std::string&& value, unsigned int line)
 		: type(type), value(std::move(value)), line(line)
 	{}
 
