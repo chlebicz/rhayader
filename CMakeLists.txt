@@ -3,10 +3,25 @@ project(rhayader)
 
 set(CMAKE_CXX_STANDARD 20)
 
+include(FetchContent)
+
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v3.4.0
+)
+
+FetchContent_MakeAvailable(Catch2)
+
+set(
+  filereader
+  FileReader.cpp FileReader.hpp
+)
+
 set(
   main
-  main.cpp repl.cpp FileReader.cpp
-  repl.hpp FileReader.hpp
+  main.cpp repl.cpp
+  repl.hpp
 )
 
 set(
@@ -48,6 +63,7 @@ set(
 )
 
 source_group("main" FILES ${main})
+source_group("filereader" FILES ${filereader})
 source_group("util" FILES ${util})
 source_group("tokenizer" FILES ${tokenizer})
 source_group("parser" FILES ${parser})
@@ -57,5 +73,19 @@ source_group("values" FILES ${values})
 
 add_executable(
   rhayader
-  ${main} ${util} ${tokenizer} ${parser} ${evaluator} ${modules} ${values}
+  ${main} ${filereader} ${util} ${tokenizer} ${parser} ${evaluator} ${modules} ${values}
 )
+
+add_executable(
+  rhayader_tests
+  test/test.cpp
+  ${filereader} ${util} ${tokenizer} ${parser} ${evaluator} ${modules} ${values}
+)
+
+target_link_libraries(rhayader_tests PRIVATE Catch2::Catch2WithMain)
+
+# Test Registration
+list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
+include(CTest)
+include(Catch)
+catch_discover_tests(rhayader_tests)
