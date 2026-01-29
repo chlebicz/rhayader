@@ -416,8 +416,9 @@ namespace rhayader {
 
 	std::shared_ptr<Value> Evaluator::resolveName(const std::string& name) {
 		for (auto& scope : currentContext) {
-			if (scope->variables.contains(name))
-				return scope->variables[name];
+			auto it = scope->variables.find(name);
+			if (it != scope->variables.end())
+				return it->second;
 		}
 		return nullptr;
 	}
