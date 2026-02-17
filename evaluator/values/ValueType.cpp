@@ -1,7 +1,7 @@
 #include "ValueType.hpp"
 
 namespace rhayader {
-	std::string dumpValueType(const ValueType type) {
+	std::string_view dumpValueType(const ValueType type) {
 		switch (type) {
 			case ValueType::ArrayValue: return "array";
 			case ValueType::BooleanValue: return "boolean";
