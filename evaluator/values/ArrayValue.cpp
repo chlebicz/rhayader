@@ -2,6 +2,7 @@
 #include "../valueCast.hpp"
 #include "../EvaluateError.hpp"
 #include <algorithm>
+#include <cstdint>
 
 namespace rhayader {
 	ArrayValue::ArrayValue(Data data)

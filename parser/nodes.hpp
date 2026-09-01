@@ -5,40 +5,45 @@
 #include <string>
 #include "ParseError.hpp"
 
+#define NODETYPES \
+	X(NumberNode) \
+    X(AddOpNode) \
+    X(SubOpNode) \
+    X(MulOpNode) \
+    X(DivOpNode) \
+    X(EqualsOpNode) \
+    X(DoubleEqualsOpNode) \
+    X(NotEqualsOpNode) \
+    X(NameNode) \
+    X(FuncCallNode) \
+    X(StringNode) \
+    X(IfNode) \
+    X(PrototypeNode) \
+    X(BlockNode) \
+    X(DotOpNode) \
+    X(ReturnNode) \
+    X(ImportNode) \
+    X(GreaterThanOpNode) \
+    X(NegationNode) \
+    X(LessThanOpNode) \
+    X(GreaterThanOrEqualOpNode) \
+    X(LessThanOrEqualOpNode) \
+    X(BooleanNode) \
+    X(ArrayNode) \
+    X(WhileLoopNode) \
+    X(ModuleNode) \
+    X(ForLoopNode) \
+    X(PipeOpNode) \
+    X(NullNode) \
+    X(AtOpNode) \
+    X(OrNode) \
+    X(AndNode)
+
 namespace rhayader {
 	enum class NodeType {
-		NumberNode,
-		AddOpNode,
-		SubOpNode,
-		MulOpNode,
-		DivOpNode,
-		EqualsOpNode,
-		DoubleEqualsOpNode,
-		NotEqualsOpNode,
-		NameNode,
-		FuncCallNode,
-		StringNode,
-		IfNode,
-		PrototypeNode,
-		BlockNode,
-		DotOpNode,
-		ReturnNode,
-		ImportNode,
-		GreaterThanOpNode,
-		NegationNode,
-		LessThanOpNode,
-		GreaterThanOrEqualOpNode,
-		LessThanOrEqualOpNode,
-		BooleanNode,
-		ArrayNode,
-		WhileLoopNode,
-		ModuleNode,
-		ForLoopNode,
-		PipeOpNode,
-		NullNode,
-		AtOpNode,
-		OrNode,
-		AndNode
+		#define X(nodeType) nodeType,
+		NODETYPES
+		#undef X
 	};
 
 	struct Node {
