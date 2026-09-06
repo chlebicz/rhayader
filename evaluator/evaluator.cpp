@@ -3,6 +3,8 @@
 #include "../FileReader.hpp"
 #if defined(WIN32)
 #include <Windows.h>
+#else
+#include <dlfcn.h>
 #endif
 #include <filesystem>
 #include <fstream>
@@ -151,7 +153,26 @@ namespace rhayader {
 			currentContext[0]->variables[module->name] = module;
 			return module;
 #else
-			throw EvaluateError{"not implemented"};
+			std::filesystem::path filepath = std::filesystem::current_path() / n->moduleName;
+			void* handle = dlopen(filepath.c_str(), RTLD_LAZY);
+			if (!handle) {
+				const char* error = dlerror();
+				throw EvaluateError(error ? error : "couldn't load c library");
+			}
+
+			typedef void(*LoadFunction)(std::shared_ptr<ModuleValue> value);
+			LoadFunction load = (LoadFunction)dlsym(handle, "load");
+			if (!load) {
+				const char* error = dlerror();
+				dlclose(handle);
+				throw EvaluateError(error ? error : "couldn't find load function");
+			}
+
+			std::shared_ptr<ModuleValue> module = std::make_shared<ModuleValue>(*this);
+			load(module);
+
+			currentContext[0]->variables[module->name] = module;
+			return module;
 #endif
 		} else {
 			Evaluator fileEvaluator{thread};

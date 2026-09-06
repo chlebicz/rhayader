@@ -88,11 +88,11 @@ add_executable(
   ${filereader} ${util} ${tokenizer} ${parser} ${evaluator} ${modules} ${values}
 )
 
-target_link_libraries(rhayader_tests PRIVATE Catch2::Catch2WithMain)
+target_link_libraries(rhayader_tests PRIVATE Catch2::Catch2WithMain ${CMAKE_DL_LIBS})
 
 # Test Registration
 list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
 include(CTest)
 include(Catch)
 catch_discover_tests(rhayader_tests)
-target_link_libraries(rhayader PRIVATE replxx)
+target_link_libraries(rhayader PRIVATE replxx ${CMAKE_DL_LIBS})
