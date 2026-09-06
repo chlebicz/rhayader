@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <string_view>
 
 namespace rhayader {
     enum class ValueType {
@@ -15,5 +16,5 @@ namespace rhayader {
         ModuleValue
     };
 
-    std::string dumpValueType(const ValueType type);
+    std::string_view dumpValueType(const ValueType type);
 }

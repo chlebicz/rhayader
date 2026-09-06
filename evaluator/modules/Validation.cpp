@@ -16,7 +16,7 @@ namespace rhayader {
 
     void validateArgumentType(const std::string& funcName, size_t index, const std::shared_ptr<Value>& arg, ValueType expected) {
         if (arg->type != expected) {
-            throw EvaluateError(funcName + " argument " + std::to_string(index + 1) + " must be of type " + dumpValueType(expected));
+            throw EvaluateError(funcName + " argument " + std::to_string(index + 1) + " must be of type " + std::string(dumpValueType(expected)));
         }
     }
 
