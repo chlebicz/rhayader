@@ -66,9 +66,8 @@ namespace rhayader {
 	}
 
 	void ArrayValue::concat(const std::shared_ptr<ArrayValue>& other) {
-		for (auto element : other->getData()) {
-			data.push_back(element);
-		}
+		const auto& otherData = other->getData();
+		data.insert(data.end(), otherData.begin(), otherData.end());
 	}
 
 	void ArrayValue::reverse() {
