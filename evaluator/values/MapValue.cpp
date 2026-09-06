@@ -77,8 +77,8 @@ namespace rhayader {
 
 	std::string MapValue::dump() const {
 		std::string result = "map(";
-		for (const auto& [key, value] : entries())
-			result += key->dump() + " => " + value->dump() + ", ";
+		for (const auto& [key, value] : data)
+			result += key + " => " + value->dump() + ", ";
 		if (size() == 0)
 			return result + ")";
 		else

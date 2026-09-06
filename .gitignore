@@ -20,3 +20,7 @@ rhayader.dir/
 rhayader
 build
 _deps/
+rhayader_tests
+CTestTestfile.cmake
+DartConfiguration.tcl
+Testing/
